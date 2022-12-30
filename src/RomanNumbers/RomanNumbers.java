@@ -47,7 +47,8 @@ public class RomanNumbers {
     }
 
     private void isValid(){
-        if (this.repI<=3 && this.repV<=3 && this.repX<=3 && this.repL<=3 && this.repC<=3 && this.repD<=3 && this.repM<=3){
+//        if (this.repI<=3 && this.repV<=3 && this.repX<=3 && this.repL<=3 && this.repC<=3 && this.repD<=3 && this.repM<=3){
+        if (this.repV<=3 && this.repL<=3 && this.repD<=3 && evaluateConsecutiveRepetition()){
             int length=this.inputNumber.length();
             int number=0;
             for (int i=0; i<length; i++){
@@ -140,31 +141,47 @@ public class RomanNumbers {
         int length= this.inputNumber.length();
         for (int counter=0; counter<length; counter++){
             switch (this.inputNumber.charAt(counter)) {
-                case 'I':
-                    this.repI++;
-                    break;
+//                case 'I':
+//                    this.repI++;
+//                    break;
                 case 'V':
                     this.repV++;
                     break;
-                case 'X':
-                    this.repX++;
-                    break;
+//                case 'X':
+//                    this.repX++;
+//                    break;
                 case 'L':
                     this.repL++;
                     break;
-                case 'C' :
-                    this.repC++;
-                    break;
+//                case 'C' :
+//                    this.repC++;
+//                    break;
                 case 'D':
                     this.repD++;
                     break;
-                case 'M':
-                    this.repM++;
-                    break;
-                default:
-                    break;
+//                case 'M':
+//                    this.repM++;
+//                    break;
+//                default:
+//                    break;
             }
         }
+    }
 
+    private boolean evaluateConsecutiveRepetition(){
+        //int i=0,v=0,x=0,l=0,c=0,d=0,m=0;
+        boolean flag=true;
+        int length= this.inputNumber.length();
+        char s, s1, s2, s3;
+        for (int counter=0; counter<length; counter++){
+            if (counter <= length-4){ // if the expression is large enough
+                s=this.inputNumber.charAt(counter);
+                s1=this.inputNumber.charAt(counter+1);
+                s2=this.inputNumber.charAt(counter+2);
+                s3=this.inputNumber.charAt(counter+3);
+                if (s == s1 && s == s2 && s == s3) flag=false;
+            }
+        }
+        return flag;
     }
 }
